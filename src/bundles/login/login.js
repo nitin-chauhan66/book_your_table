@@ -73,8 +73,6 @@ export default class Login extends React.Component {
                                 onChangeText={(email)=>{
                                     this.setState({email})
                                 }}
-                                maxLength={50}
-                                keyboardType={'email-address'}
                                 />
                             </View>
                             <View style={styleSheet.loginFormContiner}>
@@ -87,7 +85,6 @@ export default class Login extends React.Component {
                                 style={styleSheet.inputStyle}
                                 secureTextEntry={true}
                                 onChangeText={(password)=>this.setState({password})}
-                                maxLength={35}
                                 /> 
                             </View>
                         </View>

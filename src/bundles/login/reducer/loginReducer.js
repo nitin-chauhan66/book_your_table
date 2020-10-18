@@ -3,7 +3,7 @@ import {CONSTANT_TYPES} from "./../../../core/util/actionConstants"
 export default function reducer(
   state = {
     loggedIn: false,
-    loggedInUser: {},
+    LoggedInUser: {},
     pending:false,
     error:false,
     errorMsg:''
@@ -17,7 +17,7 @@ export default function reducer(
             return {
                 ...state,pending:false,error:false,errorMsg:'',
                 loggedIn:true,
-                loggedInUser:{
+                LoggedInUser:{
                     userId:action.payload.data.data.email
                 }
             }
