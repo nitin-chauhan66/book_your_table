@@ -64,7 +64,6 @@ export default class Cafes extends React.Component {
                 </View>
                 <View style={styleSheet.cafes}>
                     <CafesCards/>
-                    
                 </View>
             </SafeAreaView>
         )
@@ -121,6 +120,9 @@ const styleSheet = StyleSheet.create({
         paddingHorizontal:16
     },
     cafes:{
-        padding:16
+        flex:1,
+        padding:16,
+        paddingBottom:0,
+        borderRadius:20,
     }
 })
