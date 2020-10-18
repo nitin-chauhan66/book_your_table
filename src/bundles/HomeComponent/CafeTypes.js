@@ -60,7 +60,7 @@ class CafeTypes extends React.Component{
                             style={{
                                  margin: 5,
                                  alignItems:'center',
-                                 borderRadius:6,
+                                 borderRadius:16,
                                  borderWidth:1,
                                  borderColor:BorderColor,
                                  padding:4,

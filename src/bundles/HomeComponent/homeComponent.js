@@ -1,7 +1,9 @@
 import React from "react";
 import {View,Text, SafeAreaView,StyleSheet,Image, TouchableOpacity, TextInput} from "react-native";
 import Icon  from "react-native-vector-icons/MaterialIcons";
+import Card from "../../core/Card";
 import CafeTypes from "./CafeTypes";
+import CafesCards from "./CafesCards";
 const url = require('./../../res/images/cool-background.png')
 export default class Cafes extends React.Component {
     constructor(props){
@@ -61,7 +63,8 @@ export default class Cafes extends React.Component {
                     <CafeTypes/>
                 </View>
                 <View style={styleSheet.cafes}>
-                    {/* cafes */}
+                    <CafesCards/>
+                    
                 </View>
             </SafeAreaView>
         )
@@ -116,5 +119,8 @@ const styleSheet = StyleSheet.create({
     },
     cafeType:{
         paddingHorizontal:16
+    },
+    cafes:{
+        padding:16
     }
 })
