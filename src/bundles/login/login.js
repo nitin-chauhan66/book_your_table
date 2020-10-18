@@ -1,5 +1,5 @@
 import React from 'react';
-import {View ,Text, SafeAreaView, StyleSheet,Dimensions,TouchableOpacity, ImageBackground, TextInput} from 'react-native';
+import {View ,Text, SafeAreaView, StyleSheet,Dimensions,TouchableOpacity, ImageBackground, TextInput,ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const bgImage = require('./../../res/images/cool-background.png');
@@ -8,113 +8,109 @@ export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
-        isVisible:true
+        email:'',
+        password:''
     }
   }
+
+  handleLogin=()=>{
+    const {login} = this.props;
+    const {email,password} = this.state;
+    login({email,password});
+  }
   render() {
+      const {pending} = this.props;
       return(
           <ImageBackground
           source={bgImage} style={styleSheet.image}
           >
-          
-        <SafeAreaView style={{flex:1}}>
-                <View style={styleSheet.contianer}>
-                    <View style={{flex:3}}>
-                        <View style={styleSheet.titleStyle}>
-                            <Text style={styleSheet.titleText}>
-                                Login
-                            </Text>
-                            <Text style={styleSheet.subTitle}>
-                                    Access account
-                            </Text>
-                        </View>
-                        <View style={styleSheet.socialLoginStyle}>
-                            
-                        <TouchableOpacity
-                            style={styleSheet.linearGradient}
-                            >
-                           
-                                <Icon
-                                style={styleSheet.buttonText}
-                                name={'facebook-f'}
-                                />
-                           
-                           </TouchableOpacity>
+            <SafeAreaView style={{flex:1}}>
+                    {pending?(<ActivityIndicator/>):
+                    <View style={styleSheet.contianer}>
+                        <View style={{flex:3}}>
+                            <View style={styleSheet.titleStyle}>
+                                <Text style={styleSheet.titleText}>
+                                    Login
+                                </Text>
+                                <Text style={styleSheet.subTitle}>
+                                        Access account
+                                </Text>
+                            </View>
+                            <View style={styleSheet.socialLoginStyle}> 
                             <TouchableOpacity
-                            style={styleSheet.linearGradient}
-                            >
-                           
-                                <Icon
-                                style={styleSheet.buttonText}
-                                name={'google'}
-                                />
-                           
-                           </TouchableOpacity>
-                        </View>
-                        <View style={styleSheet.subTextContainer}>
-                            <Text style={styleSheet.subText}>
-                                or Login with Email
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={{flex:4}}>
-                        <View style={styleSheet.loginFormContiner}>
-                            <View style={styleSheet.label}>
-                                <Text style={styleSheet.labelText}>
-                                    Email
-                                </Text>
-                            </View>
-                            <TextInput
-                            style={styleSheet.inputStyle}
-                            />
-
-                           
-                        </View>
-                        <View style={styleSheet.loginFormContiner}>
-                            <View style={styleSheet.label}>
-                                <Text style={styleSheet.labelText}>
-                                    Password
-                                </Text>
-                            </View>
-                            <TextInput
-                            style={styleSheet.inputStyle}
-                            secureTextEntry={this.state.isVisible}
-                            onFocus={()=>this.setState({
-                                color:'white'
-                            })}
-                            onEndEditing={(password)=>this.setState({
-                                password
-                            })}
-                            />
-                            
-                        </View>
-
-                    </View>
-                    <View style={{flex:1,bottom:60}}>
-                            
-                            <TouchableOpacity>
-                                <LinearGradient
-                                colors={['#32576b','#274352']}
-                                start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                                locations={[0.1,1]}
-                                style={styleSheet.signInBtn}
+                                style={styleSheet.linearGradient}
                                 >
-                                
-                                    <Text style={styleSheet.signInBtnText}>
-                                        Sign In
+                                    <Icon
+                                    style={styleSheet.buttonText}
+                                    name={'facebook-f'}
+                                    />
+                            </TouchableOpacity>
+                                <TouchableOpacity
+                                style={styleSheet.linearGradient}
+                                >
+                                    <Icon
+                                    style={styleSheet.buttonText}
+                                    name={'google'}
+                                    />
+                            
+                            </TouchableOpacity>
+                            </View>
+                            <View style={styleSheet.subTextContainer}>
+                                <Text style={styleSheet.subText}>
+                                    or Login with Email
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{flex:4,top:30}}>
+                            <View style={styleSheet.loginFormContiner}>
+                                <View style={styleSheet.label}>
+                                    <Text style={styleSheet.labelText}>
+                                        Email
                                     </Text>
-                                
-                                </LinearGradient>
-                                </TouchableOpacity>
-                           <View style={{alignItems:'center',marginTop:20}}>
-                               <Text style={styleSheet.subText}>
-                                   Don't have a account? <Text style={{color:'#32576b'}}>Register</Text>
-                               </Text>
-                           </View>
-
-                    </View>
-                </View>
-        </SafeAreaView>
+                                </View>
+                                <TextInput
+                                style={styleSheet.inputStyle}
+                                onChangeText={(email)=>{
+                                    this.setState({email})
+                                }}
+                                />
+                            </View>
+                            <View style={styleSheet.loginFormContiner}>
+                                <View style={styleSheet.label}>
+                                    <Text style={styleSheet.labelText}>
+                                        Password
+                                    </Text>
+                                </View>
+                                <TextInput
+                                style={styleSheet.inputStyle}
+                                secureTextEntry={true}
+                                onChangeText={(password)=>this.setState({password})}
+                                /> 
+                            </View>
+                        </View>
+                        <View style={{flex:1,bottom:60}}>
+                                <TouchableOpacity
+                                onPress={this.handleLogin}
+                                >
+                                    <LinearGradient
+                                    colors={['#32576b','#274352']}
+                                    start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                                    locations={[0.1,1]}
+                                    style={styleSheet.signInBtn}
+                                    >
+                                        <Text style={styleSheet.signInBtnText}>
+                                            Sign In
+                                        </Text>
+                                    </LinearGradient>
+                                    </TouchableOpacity>
+                            <View style={{alignItems:'center',marginTop:20}}>
+                                <Text style={styleSheet.subText}>
+                                    Don't have a account? <Text style={{color:'#32576b'}} onPress={()=>this.props.navigation.navigate('Signup')}>Register</Text>
+                                </Text>
+                            </View>
+                        </View>
+                    </View>}
+            </SafeAreaView>
         </ImageBackground>
       )
   }
