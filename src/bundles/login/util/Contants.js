@@ -2,7 +2,7 @@ import { getCorrectConstant } from "./../../../core/util/actionConstants";
 
 export const ACTION_CONSTANTS = {
   LOGIN: "LOGIN",
-  SAVE_USER:"SAVE_USER"
+  LOGOUT_BUTTON_PRESSED:"LOGOUT_BUTTON_PRESSED"
 };
 
 export const LOGIN = type => {

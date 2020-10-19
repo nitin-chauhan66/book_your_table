@@ -21,11 +21,12 @@ export default class Login extends React.Component {
   render() {
       const {pending} = this.props;
       return(
-          <ImageBackground
-          source={bgImage} style={styleSheet.image}
-          >
-            <SafeAreaView style={{flex:1}}>
-                    {pending?(<ActivityIndicator/>):
+            <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
+                    {pending?(
+                    <View style={{flex:1,padding:16,alignItems:'center'}}>
+                    <ActivityIndicator size={'large'} color={'blue'}/>
+                    </View>
+                    ):
                     <View style={styleSheet.contianer}>
                         <View style={{flex:3}}>
                             <View style={styleSheet.titleStyle}>
@@ -114,7 +115,6 @@ export default class Login extends React.Component {
                         </View>
                     </View>}
             </SafeAreaView>
-        </ImageBackground>
       )
   }
 }
@@ -168,7 +168,7 @@ const styleSheet = StyleSheet.create({
       },
       labelText:{fontSize:16},
       inputStyle:{
-        backgroundColor:'#eceff1',
+        backgroundColor:'#f5f5f5',
         height:60,
         borderRadius:10,
         padding:10,

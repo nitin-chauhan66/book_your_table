@@ -37,6 +37,13 @@ export default function reducer(
             ...state,pending:false,error:true,errorMsg:'Incorrect email or password'
         }
     }
+    case ACTION_CONSTANTS.LOGOUT_BUTTON_PRESSED:{
+        return{
+            ...state,
+            loggedIn: false,
+            loggedInUser: {},
+        }
+    }
     default:return state;
 }
 }

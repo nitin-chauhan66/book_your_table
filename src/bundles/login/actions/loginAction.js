@@ -7,3 +7,9 @@ export const login =(loginModel)=> {
         payload: axios.post('/login_user',{email,password:parseInt(password)})
       };
     } 
+
+export const logout = ()=>{
+    return{
+        type:ACTION_CONSTANTS.LOGOUT_BUTTON_PRESSED
+    }
+}

@@ -32,7 +32,7 @@ class Card extends React.Component{
               <Image source={{uri:imageUrl}} style={{height:150,width:'100%',borderRadius:20}}/>
               <MaterialIcons name={'bookmark'}  style={{position:'absolute',right:16,top:12,fontSize:26,color:bookMarkedColor}}/>
               </View>
-                <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',marginVertical:16}}>
+                <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',paddingVertical:8}}>
                     <Text style={{flex:1,fontSize:18,overflow:'hidden'}}>{title}</Text>
                     <View style={{flexDirection:'row',alignItems:'center'}}>
                         <Text>
