@@ -14,6 +14,9 @@ export default function DrawerNavigator() {
       drawerType={'front'} 
       drawerContent={(props)=><DrawerComponent {...props}/>} 
       drawerStyle={{width:'100%'}} 
+      drawerContentOptions={{
+          activeBackgroundColor:'white'
+      }}
       >
         <Drawer.Screen 
         name="editProfile" 
