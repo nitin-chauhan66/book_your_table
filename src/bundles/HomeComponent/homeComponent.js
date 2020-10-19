@@ -1,9 +1,9 @@
 import React from "react";
 import {View,Text, SafeAreaView,StyleSheet,Image, TouchableOpacity, TextInput} from "react-native";
 import Icon  from "react-native-vector-icons/MaterialIcons";
-import Card from "../../core/Card";
 import CafeTypes from "./CafeTypes";
 import CafesCards from "./CafesCards";
+import DrawerNavigator from "./../../screens/DrawerNavigator";
 const url = require('./../../res/images/cool-background.png')
 export default class Cafes extends React.Component {
     constructor(props){
@@ -20,7 +20,9 @@ export default class Cafes extends React.Component {
         return (
             <SafeAreaView style={styleSheet.container}>
                 <View style={styleSheet.headerContainer}>
-                    <TouchableOpacity style={{height:45,marginTop:10}}>
+                    <TouchableOpacity 
+                    style={{height:45,marginTop:10}}
+                    onPress={()=>this.props.navigation.toggleDrawer()}>
                         <View style={styleSheet.menuBar1}>
                         </View>
                         <View style={styleSheet.menuBar2}>

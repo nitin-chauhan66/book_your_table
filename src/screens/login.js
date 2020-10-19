@@ -2,7 +2,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./../bundles/login/index";
-import BottomNavigator from "./bottomNavigator";
+import DrawerNavigator from "./DrawerNavigator";
 import Signup from "./../bundles/SignupComponent/index"
 import {connect} from "react-redux";
 const Stack = createStackNavigator();
@@ -12,7 +12,7 @@ class LoginScreen extends React.Component {
     const {loggedIn} = this.props;
     return (
       loggedIn ? (
-          <BottomNavigator/>
+          <DrawerNavigator/>
       ) : (
         <Stack.Navigator headerMode={'none'}>
           <Stack.Screen name="Login" component={Login}/>
