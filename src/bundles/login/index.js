@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from "./login";
 import { connect } from 'react-redux';
-import {login} from "./actions/loginAction";
+import {login, resetError} from "./actions/loginAction";
 
 class LoginComponent extends React.Component {
     render(){
@@ -24,7 +24,8 @@ const wrappedComponent = connect(
     },
     dispatch => {
       return {
-          login: loginModel => dispatch(login(loginModel))
+          login: loginModel => dispatch(login(loginModel)),
+          resetError:() => dispatch(resetError())
       };
     }
   )(LoginComponent);

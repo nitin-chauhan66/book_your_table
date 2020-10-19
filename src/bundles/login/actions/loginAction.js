@@ -13,3 +13,9 @@ export const logout = ()=>{
         type:ACTION_CONSTANTS.LOGOUT_BUTTON_PRESSED
     }
 }
+
+export const resetError =()=>{
+    return {
+        type:ACTION_CONSTANTS.RESET_ERROR
+    }
+}

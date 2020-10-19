@@ -1,22 +1,83 @@
 import React from 'react';
-import {View ,Text, SafeAreaView, StyleSheet,Dimensions,TouchableOpacity, ImageBackground, TextInput,ActivityIndicator} from 'react-native';
+import {View ,Text, SafeAreaView, StyleSheet,Dimensions,TouchableOpacity, ImageBackground, TextInput,ActivityIndicator,Alert} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
-const bgImage = require('./../../res/images/cool-background.png');
 const {width,height} = Dimensions.get('window');
 export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
         email:'',
-        password:''
+        password:'',
+        error:{
+            emailError:false,
+            emailErrorMsg:'',
+            passwordError:false,
+            passwordErrorMsg:''
+        }
     }
   }
 
   handleLogin=()=>{
-    const {login} = this.props;
-    const {email,password} = this.state;
-    login({email,password});
+      if(!this.formValidation()){
+        const {login} = this.props;
+        const {email,password} = this.state;
+        this.setState({
+            error:{
+            emailError:false,
+            emailErrorMsg:'',
+            passwordError:false,
+            passwordErrorMsg:''
+            }
+        })
+        login({email,password});
+      }
+  }
+
+  formValidation=()=>{
+      const {email,password} = this.state;
+      const emailRegex = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+      let error = {
+        emailError:false,
+        emailErrorMsg:'',
+        passwordError:false,
+        passwordErrorMsg:''
+    };
+      let isError=false;
+      if(email==="" || email===" "){
+        error = {...error,emailError:true,emailErrorMsg:'Email can not be empty'};
+        isError=true;
+      }else{
+        if(!emailRegex.test(email)){
+            error = {...error,emailError:true,emailErrorMsg:'Please enter the valid email'};
+            isError=true;
+          }
+      }
+      if(password==="" || password===" "){
+          error = {...error,passwordError:true,passwordErrorMsg:'Password can not be empty'};
+          isError=true;
+      }
+      if(isError){
+        this.setState({
+            error
+        })
+        return true;
+      }
+      return false;
+  }
+
+  componentDidUpdate(){
+      const {error,errorMsg,resetError} = this.props;
+      if(error){
+        Alert.alert(
+            'Error!',
+            errorMsg,
+            [
+              { text: 'OK', onPress: () => resetError() }
+            ],
+            { cancelable: false }
+          );
+      }
   }
   render() {
       const {pending} = this.props;
@@ -74,9 +135,17 @@ export default class Login extends React.Component {
                                 onChangeText={(email)=>{
                                     this.setState({email})
                                 }}
+                                value={this.state.email}
                                 maxLength={50}
                                 keyboardType={'email-address'}
                                 />
+                                {this.state.error.emailError&&
+                                <View style={styleSheet.label}>
+                                    <Text style={{color:'red'}}>
+                                        {this.state.error.emailErrorMsg}
+                                    </Text>
+                                </View>
+                                }
                             </View>
                             <View style={styleSheet.loginFormContiner}>
                                 <View style={styleSheet.label}>
@@ -89,7 +158,15 @@ export default class Login extends React.Component {
                                 secureTextEntry={true}
                                 onChangeText={(password)=>this.setState({password})}
                                 maxLength={35}
+                                value={this.state.password}
                                 /> 
+                                {this.state.error.passwordError&&
+                                <View style={styleSheet.label}>
+                                    <Text style={{color:'red'}}>
+                                        {this.state.error.passwordErrorMsg}
+                                    </Text>
+                                </View>
+                                }
                             </View>
                         </View>
                         <View style={{flex:1,bottom:60}}>

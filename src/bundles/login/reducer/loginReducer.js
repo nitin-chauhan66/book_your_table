@@ -44,6 +44,13 @@ export default function reducer(
             loggedInUser: {},
         }
     }
+    case ACTION_CONSTANTS.RESET_ERROR:{
+        return {
+            ...state,
+            error:false,
+            errorMsg:''
+        }
+    }
     default:return state;
 }
 }
