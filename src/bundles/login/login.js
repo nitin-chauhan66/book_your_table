@@ -1,8 +1,8 @@
 import React from 'react';
-import {View ,Text, SafeAreaView, StyleSheet,Dimensions,TouchableOpacity, ImageBackground, TextInput,ActivityIndicator,Alert} from 'react-native';
+import {View ,Text, SafeAreaView, StyleSheet,TouchableOpacity, TextInput,ActivityIndicator,Alert} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
-const {width,height} = Dimensions.get('window');
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export default class Login extends React.Component {
   constructor(props){
     super(props);
@@ -89,7 +89,7 @@ export default class Login extends React.Component {
                     </View>
                     ):
                     <View style={styleSheet.contianer}>
-                        <View style={{flex:3}}>
+                        <View style={{flex:2}}>
                             <View style={styleSheet.titleStyle}>
                                 <Text style={styleSheet.titleText}>
                                     Login
@@ -123,7 +123,7 @@ export default class Login extends React.Component {
                                 </Text>
                             </View>
                         </View>
-                        <View style={{flex:4,top:30}}>
+                        <View style={{flex:2}}>
                             <View style={styleSheet.loginFormContiner}>
                                 <View style={styleSheet.label}>
                                     <Text style={styleSheet.labelText}>
@@ -169,7 +169,7 @@ export default class Login extends React.Component {
                                 }
                             </View>
                         </View>
-                        <View style={{flex:1,bottom:60}}>
+                        <View style={{flex:1,justifyContent:'flex-end'}}>
                                 <TouchableOpacity
                                 onPress={this.handleLogin}
                                 >
@@ -199,15 +199,23 @@ export default class Login extends React.Component {
 const styleSheet = StyleSheet.create({
     contianer:{padding:16,flex:1},
     titleStyle:{
-        marginTop:height*.01,
+        marginTop:hp(1),
         alignItems:'center'
     },
-    titleText:{fontSize:28,fontWeight:'bold'},
-    subTitle:{color:'#9e9e9e',fontSize:20,padding:5,paddingTop:16},
+    titleText:{
+        fontSize:hp(4),
+        fontWeight:'bold'
+    },
+    subTitle:{
+        color:'#9e9e9e',
+        fontSize:hp(3),
+        padding:hp(0.5),
+        marginTop:hp(2)
+    },
     socialLoginStyle:{
         flexDirection:'row',
-        marginTop:26,
-        justifyContent:'center'
+        justifyContent:'center',
+        marginTop:hp(5)
     },
     linearGradient: {
         flex: 1,
@@ -215,13 +223,12 @@ const styleSheet = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 10,
         marginHorizontal:20,
-        marginTop:30,
         backgroundColor:'#cad5df'
       },
       buttonText: {
-        fontSize: 28,
+        fontSize: hp(4),
         textAlign: 'center',
-        margin: 16,
+        margin: hp(2.2),
         color: '#f5f5f5',
         backgroundColor: 'transparent',
       },
@@ -231,7 +238,7 @@ const styleSheet = StyleSheet.create({
         justifyContent: "center"
       },
       subTextContainer:{
-        marginTop:40,
+        marginTop:hp(5),
         alignItems:'center'
       },
       subText:{
@@ -241,15 +248,17 @@ const styleSheet = StyleSheet.create({
         marginHorizontal:20,
       },
       label:{
-          marginVertical:10
+          marginVertical:hp(1)
       },
-      labelText:{fontSize:16},
+      labelText:{
+          fontSize:hp(2.3)
+        },
       inputStyle:{
         backgroundColor:'#f5f5f5',
-        height:60,
+        height:hp(8),
         borderRadius:10,
-        padding:10,
-        fontSize:20,
+        padding:hp(2),
+        fontSize:hp(2.6),
         color:'#74a4c4'
       },
       signInBtn:{
@@ -257,13 +266,13 @@ const styleSheet = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 15,
         marginHorizontal:20,
-        marginTop:30,
+        marginTop:hp(2),
         backgroundColor:'#32576b'
       },
       signInBtnText:{
-        fontSize: 18,
+        fontSize: hp(2.4),
         textAlign: 'center',
-        padding:20,
+        padding:hp(2.8),
         color: 'white',
         backgroundColor: 'transparent',
         fontWeight:'500'
